@@ -10,17 +10,21 @@ public class FirstQue {
 		// TODO Auto-generated method stub
 		
 		String path = "D:\\Capg Training\\L&D\\My Data\\Capg_TrainingDay3\\dayfive";
-		String directory = "";
-		String filename = "";
-		String fileExtension = "";
+		
 		int len = path.length() ;
 		int exit = 5;
 		
 		Scanner sc = new Scanner(System.in);
 		
 		while(exit != 1) {
+			
+		String directory = "";
+		String filename = "";
+		String fileExtension = "";
 	
+		
 		System.out.println("Enter the Directory name to find: ");
+		
 		directory =	sc.nextLine();
 			
 		System.out.println("Enter the file name to find: ");
@@ -30,6 +34,8 @@ public class FirstQue {
 		fileExtension =	sc.nextLine();
 		
 		path = path+"\\"+directory+"\\"+filename+"."+fileExtension;
+		String replace = new String("\\"+directory+"\\"+filename+"."+fileExtension);
+		
 		
 //		
 		
@@ -50,7 +56,8 @@ public class FirstQue {
 		}
 		System.out.println("To Exit press 1 else press any key.");
 		exit = sc.nextInt();
-		
+		sc.nextLine();
+		path = path.replace(replace, "");
 		
 		
 		System.out.println("Path: "+path);
@@ -62,7 +69,7 @@ public class FirstQue {
 		sc.close();
 		
 		
-		
+		System.out.println("Thank You!");
 	}
 
 }
