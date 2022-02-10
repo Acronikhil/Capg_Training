@@ -22,6 +22,7 @@ public class FirstQue {
 		String filename = "";
 		String fileExtension = "";
 	
+		System.out.println("Current Working Director Path: "+path);
 		
 		System.out.println("Enter the Directory name to find: ");
 		
@@ -54,16 +55,19 @@ public class FirstQue {
 			FileNotFoundException fnfe = new FileNotFoundException("File Not found in current Directory.");
 			throw fnfe;
 		}
+		
+		}catch(FileNotFoundException fnfe) {
+			fnfe.printStackTrace();
+			
+		}finally {
 		System.out.println("To Exit press 1 else press any key.");
 		exit = sc.nextInt();
 		sc.nextLine();
 		path = path.replace(replace, "");
 		
 		
-		System.out.println("Path: "+path);
-		}catch(FileNotFoundException fnfe) {
-			fnfe.printStackTrace();
-		}
+		
+			}
 		
 		}
 		sc.close();
