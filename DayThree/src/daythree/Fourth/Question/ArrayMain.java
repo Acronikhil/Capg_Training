@@ -15,6 +15,7 @@ public class ArrayMain {
 		System.out.println("Enter the Element to search in array");
 		search = sc.nextInt();
 		
+		sc.close();
 		in.findNumber(search);
 		
 		
