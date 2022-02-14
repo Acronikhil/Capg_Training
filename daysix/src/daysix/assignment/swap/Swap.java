@@ -1,7 +1,7 @@
 package daysix.assignment.swap;
 
 public class Swap<T> {
-	public static <T> T[]swap(T[] list, int firstPos, int secondPos){
+	public static <T> T[]swap(T [] list, int firstPos, int secondPos){
 		
 		T tempVar;
 		tempVar = list[firstPos];
