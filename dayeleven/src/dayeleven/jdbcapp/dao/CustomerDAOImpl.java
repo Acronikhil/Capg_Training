@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import dayeleven.jdbcapp.data.Customer;
 import dayeleven.jdbcapp.exceptions.CustomerAlreadyExistsException;
 import dayeleven.jdbcapp.exceptions.CustomerNotFoundException;
@@ -56,6 +58,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return customer;
 	}
 
+//	@Test
+//	public void getCustomerTest() {
+//		Customer cust = new Customer();
+//		cust.getCustomerId()
+//	}
+	
+	
 	@Override
 	public List<Customer> getAllCustomers() throws CustomerNotFoundException {
 
