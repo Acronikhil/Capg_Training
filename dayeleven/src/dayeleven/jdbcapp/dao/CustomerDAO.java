@@ -22,5 +22,9 @@ public interface CustomerDAO {
 
 //	Delete
 	public Integer deleteCustomer(Integer customerId);
+	
+//	Calling a storedProcedure
+	
+	public String callProcedure(Integer custId);
 
 }

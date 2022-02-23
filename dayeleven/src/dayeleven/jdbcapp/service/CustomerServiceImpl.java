@@ -42,4 +42,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDAO.deleteCustomer(customerId);
 	}
 
+	@Override
+	public String callProcedure(Integer custId) {
+		return customerDAO.callProcedure(custId);
+	}
+
 }

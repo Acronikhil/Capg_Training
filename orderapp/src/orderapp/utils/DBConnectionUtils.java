@@ -11,7 +11,6 @@ public class DBConnectionUtils {
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, "root", "root");
-			conn.
 			System.out.println("Conncetion Successfull !");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

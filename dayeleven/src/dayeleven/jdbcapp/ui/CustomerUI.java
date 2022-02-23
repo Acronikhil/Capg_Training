@@ -14,22 +14,24 @@ public class CustomerUI {
 		// TODO Auto-generated method stub
 		CustomerService customerService = new CustomerServiceImpl();
 
-/*		Customer customer = new Customer();
-		Customer customer = new Customer(1,"Nikil Dubey",LocalDate.of(2001,01,20),8962132378L,"nikhil@gmail.com");
-		System.out.println(customerService.addCustomer(customer));
-*/		
+//		Customer customer = new Customer();
+//		Customer customer = new Customer(2,"Nikar Jain",LocalDate.of(2000,11,22),8961132378L,"nikhar@gmail.com");
+//		System.out.println(customerService.addCustomer(customer));
+		
 		
 /*		System.out.println(customer = customerService.getCustomerById(2));
 		System.out.println(customer);
 		System.out.println(customerService.updateCustomer(customer));
 */
-		try {
+/*
+ 		try {
 			System.out.println(customerService.getCustomerById(2));
 		} catch (CustomerNotFoundException e) {
 			System.out.println(e.getMessage());
 		} catch (CustomerAlreadyExistsException e) {
 			System.out.println(e.getMessage());
 		}
+*/
 		
 //		System.out.println(customerService.deleteCustomer(1));
 		
@@ -40,6 +42,10 @@ public class CustomerUI {
 			System.out.println(e.getMessage());
 		}
 */
+	
+		System.out.println(customerService.callProcedure(2));
+		
+	
 	}
 
 }

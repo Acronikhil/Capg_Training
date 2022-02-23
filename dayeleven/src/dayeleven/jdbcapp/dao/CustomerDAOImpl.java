@@ -1,5 +1,6 @@
 package dayeleven.jdbcapp.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +12,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+
+
 import dayeleven.jdbcapp.data.Customer;
 import dayeleven.jdbcapp.exceptions.CustomerAlreadyExistsException;
 import dayeleven.jdbcapp.exceptions.CustomerNotFoundException;
@@ -20,7 +23,8 @@ import dayeleven.jdbcapp.util.QuerryMapper;
 public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
-	public Customer getCustomerById(Integer customerId) throws CustomerNotFoundException, CustomerAlreadyExistsException {
+	public Customer getCustomerById(Integer customerId)
+			throws CustomerNotFoundException, CustomerAlreadyExistsException {
 
 		String[] strArr = { "customerID", "customerName", "birthDate", "mobile", "email" };
 		Customer customer = new Customer();
@@ -30,8 +34,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 					.prepareStatement(QuerryMapper.GET_CUSTOMER_By_Id);
 			preparedStatement.setInt(1, customerId);
 			ResultSet result = preparedStatement.executeQuery();
-			
-			
+
 			while (result.next()) {
 
 				customer.setCustomerId(result.getInt(strArr[0]));
@@ -41,20 +44,18 @@ public class CustomerDAOImpl implements CustomerDAO {
 				customer.setEmail(result.getString(strArr[4]));
 				return customer;
 			}
-			
-			if(result.getRow() == 0) {
+
+			if (result.getRow() == 0) {
 				throw new CustomerNotFoundException("Customer Not Found With This Id");
 			}
-			
-		}
-		catch (SQLIntegrityConstraintViolationException sicve) {
+
+		} catch (SQLIntegrityConstraintViolationException sicve) {
 			throw new CustomerAlreadyExistsException("Customer Already Exists");
-		}
-		catch (SQLException e) {
-			
+		} catch (SQLException e) {
+
 			e.printStackTrace();
 		}
-		
+
 		return customer;
 	}
 
@@ -63,8 +64,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 //		Customer cust = new Customer();
 //		cust.getCustomerId()
 //	}
-	
-	
+
 	@Override
 	public List<Customer> getAllCustomers() throws CustomerNotFoundException {
 
@@ -88,14 +88,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	
-		
-			if(customerList.isEmpty())
-			{
-				throw new CustomerNotFoundException("Customer Not Found No Recors Exists");
-			}
-		
-		
+
+		if (customerList.isEmpty()) {
+			throw new CustomerNotFoundException("Customer Not Found No Recors Exists");
+		}
+
 		return customerList;
 	}
 
@@ -104,7 +101,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		int row = 0;
 		try {
-			
 
 			PreparedStatement preparedStatement = DBConnectionUtils.getDBConnection()
 					.prepareStatement(QuerryMapper.ADD_CUSTOMER);
@@ -156,6 +152,23 @@ public class CustomerDAOImpl implements CustomerDAO {
 			e.printStackTrace();
 		}
 		return row;
+	}
+
+	@Override
+	public String callProcedure(Integer custId) {
+		try {
+			CallableStatement callableStatement = DBConnectionUtils.getDBConnection().prepareCall("call delete_data(?)");
+			callableStatement.setInt(1, custId);
+			int n = callableStatement.executeUpdate();
+			if(n!=0) {
+				return "Deleted Successfully";
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "Not able to delete the data";
 	}
 
 }
